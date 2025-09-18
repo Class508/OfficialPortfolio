@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>prashanta Guragain</title>
+    <!-- Inter font for a modern feel -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Tailwind CSS for utility-first styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --sidebar-width: 280px;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0d1117;
+            color: #c9d1d9;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* --- Custom CSS for the "Shadow & Light" effect --- */
+        /* Glowing effect for the profile picture border */
+        @keyframes glow {
+            0% { box-shadow: 0 0 5px #4f46e5, 0 0 10px #4f46e5; }
+            50% { box-shadow: 0 0 10px #a5b4fc, 0 0 20px #a5b4fc; }
+            100% { box-shadow: 0 0 5px #4f46e5, 0 0 10px #4f46e5; }
+        }
+        .glow-border {
+            animation: glow 3s ease-in-out infinite;
+        }
+        
+        /* Glowing input fields */
+        .glowing-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            box-shadow: 0 0 0 2px #3e3e4a, 0 0 10px #6366f1;
+        }
+
+        /* Project card hover effect */
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Skills bar animation */
+        .skill-bar {
+            position: relative;
+            overflow: hidden;
+        }
+        .skill-bar-fill {
+            transition: width 1.5s ease-in-out;
+        }
+        
+        /* --- Layout specific styling --- */
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            left: 0;
+            top: 0;
+            background-color: #161b22;
+            padding: 2.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-right: 1px solid #30363d;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+            position: fixed;
+            z-index: 10;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding: 2.5rem;
+        }
+
+        /* For mobile, the sidebar becomes a top bar */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                border-right: none;
+                border-bottom: 1px solid #30363d;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+        }
+    </style>
+</head>
+<body class="md:flex">
+    <!-- Left Sidebar -->
+    <aside class="sidebar">
+        <!-- Profile Picture Container -->
+        <div class="relative w-40 h-40 mb-8">
+            <div class="absolute inset-0 rounded-full glow-border"></div>
+            <div class="w-full h-full rounded-full overflow-hidden bg-gray-700 flex items-center justify-center text-gray-400">
+                <!-- Image tag with the corrected direct URL -->
+                <img src="https://raw.githubusercontent.com/Class508/My-pic-/main/p.jpg" alt="Prashant Guragain Profile Picture" class="w-full h-full object-cover">
+            </div>
+        </div>
+
+        <h1 class="text-3xl font-bold text-white mb-2">Prashant Guragain</h1>
+        <p class="text-blue-300 text-sm italic text-center mb-8">Aspiring Computer Scientist | Future Cybersecurity Expert</p>
+
+        <!-- Navigation Icons -->
+        <nav class="flex flex-col space-y-6">
+            <a href="#home" class="flex items-center space-x-4 text-lg text-gray-400 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+                </svg>
+                <span>Home</span>
+            </a>
+            <a href="#about" class="flex items-center space-x-4 text-lg text-gray-400 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 18a9.75 9.75 0 0 1 15 0H4.501Z" />
+                </svg>
+                <span>About</span>
+            </a>
+            <a href="#projects" class="flex items-center space-x-4 text-lg text-gray-400 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14.25 6.75h-1.5A2.25 2.25 0 0 0 10.5 9v1.5a2.25 2.25 0 0 0 2.25 2.25h1.5a2.25 2.25 0 0 0 2.25-2.25V9a2.25 2.25 0 0 0-2.25-2.25Zm-2.25 6h.008v.008h-.008v-.008Zm2.25 6h.008v.008h-.008v-.008Zm2.25 6h.008v.008h-.008v-.008Zm2.25 6h.008v.008h-.008v-.008Zm2.25 6h.008v.008h-.008v-.008Zm2.25 6h.008v.008h-.008v-.008Zm-2.25 6h.008v.008h-.008v-.008ZM8.25 6.75h-.008v.008h.008v-.008Zm-2.25 6h-.008v.008h.008v-.008ZM4.5 18.75h-.008v.008h.008v-.008Z" />
+                    <path d="M19.5 7.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5a2.25 2.25 0 0 0 2.25 2.25h15a2.25 2.25 0 0 0 2.25-2.25V9.75a2.25 2.25 0 0 0-2.25-2.25Z" />
+                </svg>
+                <span>Projects</span>
+            </a>
+            <a href="#contact" class="flex items-center space-x-4 text-lg text-gray-400 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                </svg>
+                <span>Contact</span>
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content flex-1">
+        <!-- Digital Rain Canvas -->
+        <canvas id="digitalRain" class="absolute inset-0 z-0 opacity-10 pointer-events-none"></canvas>
+        
+        <!-- Home Section -->
+        <section id="home" class="relative z-10 min-h-screen flex items-center justify-center text-center">
+            <div class="p-8 md:p-16 bg-black/50 backdrop-blur-sm rounded-3xl border border-gray-700 shadow-2xl">
+                <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white mb-4">
+                    Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-600">Prashant</span> 👋
+                </h1>
+                <p class="text-xl sm:text-2xl text-gray-300 font-light max-w-2xl mx-auto">
+                    Turning passion for computers into real-world impact.
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="relative z-10 py-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-2">About Me</h2>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+                    <p class="text-gray-300 leading-relaxed mb-6">
+                        From a young age, I was fascinated by the inner workings of computers. It started with simple curiosity, which quickly evolved into a deep-seated passion for programming and networking. My journey, though not a traditional one, is defined by an unquenchable thirst for knowledge. I've spent countless hours diving into code, understanding network protocols, and building projects from the ground up.
+                    </p>
+                    <p class="text-gray-300 leading-relaxed">
+                        My ultimate goal is to become a cybersecurity expert, an area where I can combine my passion for problem-solving with the critical need to protect digital systems. This path is not just a career, it's a mission to make a real-world impact in an ever-evolving technological landscape.
+                    </p>
+                </div>
+                
+                <!-- Timeline Card -->
+                <div class="mt-8 bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+                    <h3 class="text-2xl font-semibold text-white mb-4">My Journey</h3>
+                    <div class="flex flex-col space-y-6 relative before:absolute before:left-3 before:top-0 before:h-full before:w-1 before:bg-gray-700">
+                        <div class="flex items-start space-x-4">
+                            <span class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></span>
+                            <div>
+                                <h4 class="font-semibold text-blue-300">NEB Class 12</h4>
+                                <p class="text-gray-400 text-sm">Completed my foundational education, sparking my initial interest in STEM fields.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></span>
+                            <div>
+                                <h4 class="font-semibold text-blue-300">BSc.CSIT</h4>
+                                <p class="text-gray-400 text-sm">Pursuing my Bachelor's degree, deepening my knowledge in computer science and information technology.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <span class="w-6 h-6 rounded-full bg-blue-500 flex-shrink-0 mt-1"></span>
+                            <div>
+                                <h4 class="font-semibold text-blue-300">Future Cybersecurity Expert</h4>
+                                <p class="text-gray-400 text-sm">Working towards my dream of joining a top cybersecurity company, securing the digital world.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fun Fact Highlight Box -->
+                <div class="mt-8 bg-gray-900 p-6 rounded-xl border border-blue-500 text-center shadow-lg">
+                    <p class="text-lg font-bold text-white">"Fun fact: I once tried to build a plasma thruster 🚀"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="relative z-10 py-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-2">My Skills</h2>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+                    <div class="space-y-6">
+                        <!-- Skill Bar -->
+                        <div class="skill-bar">
+                            <h4 class="text-lg font-semibold text-gray-300 mb-2">C / C++</h4>
+                            <div class="bg-gray-700 rounded-full h-3">
+                                <div class="skill-bar-fill bg-blue-500 h-full rounded-full w-4/5"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Bar -->
+                        <div class="skill-bar">
+                            <h4 class="text-lg font-semibold text-gray-300 mb-2">JavaScript</h4>
+                            <div class="bg-gray-700 rounded-full h-3">
+                                <div class="skill-bar-fill bg-blue-500 h-full rounded-full w-3/4"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Bar -->
+                        <div class="skill-bar">
+                            <h4 class="text-lg font-semibold text-gray-300 mb-2">Networking</h4>
+                            <div class="bg-gray-700 rounded-full h-3">
+                                <div class="skill-bar-fill bg-blue-500 h-full rounded-full w-4/5"></div>
+                            </div>
+                        </div>
+                        <!-- Skill Bar -->
+                        <div class="skill-bar">
+                            <h4 class="text-lg font-semibold text-gray-300 mb-2">Problem-Solving</h4>
+                            <div class="bg-gray-700 rounded-full h-3">
+                                <div class="skill-bar-fill bg-blue-500 h-full rounded-full w-5/6"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Cybersecurity Enthusiast Badge -->
+                    <div class="mt-8 text-center">
+                        <span class="inline-flex items-center space-x-2 bg-blue-900/50 text-blue-300 text-sm font-bold px-4 py-2 rounded-full border border-blue-500">
+                            <span class="text-xl">🔒</span>
+                            <span>Cybersecurity Enthusiast</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="relative z-10 py-20">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-2">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Project Card: Object Avoider Bluetooth Controlled Car -->
+                    <div class="project-card bg-gray-800 p-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700">
+                        <h3 class="text-xl font-bold text-white mb-2">Object Avoider Car</h3>
+                        <p class="text-gray-400 mb-4">An Arduino-based robotic car that uses sensors to detect and autonomously avoid obstacles, controlled via Bluetooth.</p>
+                        <a href="https://github.com/Class508/Car_project-" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                            <span>View Project</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Project Card: Malicious Mobile Application -->
+                    <div class="project-card bg-gray-800 p-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700">
+                        <h3 class="text-xl font-bold text-white mb-2">Covert Android Payload</h3>
+                        <p class="text-gray-400 mb-4">A project demonstrating a malicious payload hidden within another Android app, using the Metasploit Framework and a reverse TCP connection to bypass firewalls and establish a command-and-control channel on Android 11.</p>
+                        <a href="https://github.com/Class508/malicious_application-" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                            <span>View Project</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Project Card: Bookgarum -->
+                    <div class="project-card bg-gray-800 p-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700">
+                        <h3 class="text-xl font-bold text-white mb-2">Bookgarum</h3>
+                        <p class="text-gray-400 mb-4">A vehicle booking website designed to streamline the process of finding and reserving transportation.</p>
+                        <a href="#" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                            <span>View Project</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Project Card: Car Parking Auto Slot Detector -->
+                    <div class="project-card bg-gray-800 p-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700">
+                        <h3 class="text-xl font-bold text-white mb-2">Car Parking Auto Slot Detector</h3>
+                        <p class="text-gray-400 mb-4">An innovative servo-based project that automatically detects and manages available parking slots.</p>
+                        <a href="#" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                            <span>View Project</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                    <!-- Project Card: Plasma Thruster -->
+                    <div class="project-card bg-gray-800 p-6 rounded-xl shadow-lg transition-transform duration-300 hover:scale-105 border border-gray-700">
+                        <h3 class="text-xl font-bold text-white mb-2">Plasma Thruster Experiment</h3>
+                        <p class="text-gray-400 mb-4">An experimental project exploring the fascinating principles of plasma physics and propulsion.</p>
+                        <a href="#" class="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors">
+                            <span>View Project</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25" />
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+ <!-- Contact Section -->
+        <section id="contact" class="relative z-10 py-20">
+            <div class="max-w-xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-8 border-b border-gray-700 pb-2">Get in Touch</h2>
+                <div class="bg-gray-800 p-8 rounded-xl shadow-lg border border-gray-700">
+                    <form action="https://api.web3forms.com/submit" method="POST" class="space-y-6">
+                    
+                        <input type="hidden" name="apikey" value="0ccffecc-46c9-4bdd-a40c-35fb1b937766">
+
+                        <div>
+                            <label for="name" class="block text-gray-300">Name</label>
+                            <input type="text" id="name" name="name" class="glowing-input w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-300">Email</label>
+                            <input type="email" id="email" name="email" class="glowing-input w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 transition-all duration-300">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-300">Message</label>
+                            <textarea id="message" name="message" rows="4" class="glowing-input w-full p-3 bg-gray-900 border border-gray-700 rounded-lg text-white placeholder-gray-500 transition-all duration-300"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-blue-600 text-white font-bold py-3 rounded-lg hover:bg-blue-700 transition-colors duration-300 shadow-md">
+                            Send Message
+                        </button>
+                    </form>
+                    
+                    <div class="mt-8 border-t border-gray-700 pt-6">
+                        <p class="text-gray-400 text-center mb-4">Or connect with me directly:</p>
+                        <ul class="flex justify-center space-x-6">
+                            <li>
+                                <a href="mailto:killer.1337b@gmail.com" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10h4v-2h-4c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8v1h2V12c0-4.42-3.58-8-8-8zm-5 5v10h10V7H7zM16 11H8V9h8v2zm0 4H8v-2h8v2z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="tel:9806074303" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                        <path d="M6.62 10.79a15.22 15.22 0 0 0 6.59 6.59l2.21-2.21c.27-.27.67-.36 1.02-.24.9.29 1.86.44 2.85.44.82 0 1.5.68 1.5 1.5v3c0 .82-.68 1.5-1.5 1.5-.78 0-4.06-1.57-7.86-5.37C4.57 9.87 3 6.59 3 5.82c0-.82.68-1.5 1.5-1.5h3c.82 0 1.5.68 1.5 1.5l-1.07 4.07z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/Class508" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.6.111.82-.258.82-.577 0-.285-.011-1.04-.016-2.04-3.338.724-4.042-1.61-4.042-1.61-.545-1.381-1.332-1.745-1.332-1.745-1.089-.744.082-.729.082-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.492.999.108-.779.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.312.468-2.384 1.236-3.22-.124-.3-.538-1.524.118-3.176 0 0 1.009-.322 3.301 1.233 1.01-.281 2.071-.422 3.132-.426 1.06.004 2.122.145 3.132.426 2.291-1.555 3.297-1.233 3.297-1.233.655 1.652.241 2.876.118 3.176.77.836 1.233 1.908 1.233 3.22 0 4.61-2.806 5.624-5.479 5.921.43.37.81 1.096.81 2.222 0 1.605-.015 2.893-.015 3.286 0 .319.219.692.829.577 4.769-1.587 8.205-6.085 8.205-11.385C24 5.373 18.627 0 12 0"/>
+                                    </svg>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://np.linkedin.com/in/prashanta-guragain-0a24bb335" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                            <!-- Facebook Icon -->
+                            <li>
+                                <a href="https://www.facebook.com/share/19kWcbeS4T/" target="_blank" class="text-blue-400 hover:text-blue-300 transition-colors">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-6 h-6" viewBox="0 0 24 24">
+                                        <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm3 8h-2c-.651 0-1 .446-1 1v2h3l-.326 3h-2.674v8h-3v-8h-2v-3h2v-2.3c0-1.89 1.096-2.7 2.784-2.7h2.216v3z"/>
+                                    </svg>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // --- JavaScript for the Digital Rain animation ---
+        const canvas = document.getElementById('digitalRain');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        const matrix = "0123456789ABCDEF";
+        const font_size = 18;
+        let columns = Math.floor(width / font_size);
+        let drops = [];
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function draw() {
+            ctx.fillStyle = "rgba(13, 17, 23, 0.05)";
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = "#a5b4fc";
+            ctx.font = font_size + "px Inter, monospace";
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrix[Math.floor(Math.random() * matrix.length)];
+                ctx.fillText(text, i * font_size, drops[i] * font_size);
+
+                if (drops[i] * font_size > height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            columns = Math.floor(width / font_size);
+            drops = [];
+            for (let x = 0; x < columns; x++) {
+                drops[x] = 1;
+            }
+        });
+
+        // Animation Loop
+        let intervalId;
+        window.onload = function() {
+            intervalId = setInterval(draw, 50);
+        };
+        // End of Digital Rain animation code
+
+        // --- JavaScript for Skills Bar animation on scroll ---
+        const skillsBars = document.querySelectorAll('.skill-bar-fill');
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBar = entry.target;
+                    const initialWidth = skillBar.style.width;
+                    skillBar.style.width = '0'; // Reset to 0 before animating
+                    setTimeout(() => {
+                        skillBar.style.width = initialWidth;
+                    }, 100);
+                    observer.unobserve(skillBar);
+                }
+            });
+        }, { threshold: 0.5 }); // Trigger when 50% of the element is visible
+
+        skillsBars.forEach(bar => {
+            observer.observe(bar);
+        });
+    </script>
+</body>
+</html>
